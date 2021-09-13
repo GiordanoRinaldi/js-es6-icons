@@ -113,14 +113,92 @@ const icons = [
 	},
 ];
 
-icons.forEach((elm) => {
 
-    const container = document.getElementById("icons");
-    const {family, name, prefix} = elm;
+const colors = {
+    food: "pink",
+    animal: "green",
+    beverage: "yellow"
+};
 
-    container.innerHTML += `
-        <div class="box">
-            <div><i class="${family} ${prefix}${name} fa-2x"></i></div>
-            <div class="name">${name}</div>
-        </div>`
-})
+/**
+ * funzioni
+ */
+
+const printIcons = (arr, container) => {
+    container.innerHTML = " ";
+
+    arr.forEach(
+        (elm) => {
+            const {family, name, prefix, color} = elm;
+        
+            container.innerHTML += `
+                <div class="box">
+                    <div><i class="${family} ${prefix}${name} fa-2x" style="color: ${color}" ></i></div>
+                    <div class="name">${name}</div>
+                </div>`
+        }
+    );
+}
+
+
+
+
+
+
+
+/**
+ * programnma principale
+ */
+
+const containerIcons = document.getElementById("icons");
+
+const iconsColored = icons.map(
+    (elm) => {
+        return {
+            ...elm,
+            color: colors[elm.category]
+        }
+        
+    }
+);
+
+
+
+printIcons(iconsColored, containerIcons);
+
+
+
+//creiamo una select con i tipi di icone e usiamola per filtrare le icone
+// creo una option per ogni categoria
+
+const iconCategory = [];
+icons.forEach(
+    (elm) => {
+        if ( iconCategory.includes(elm.category) == false )
+        iconCategory.push(elm.category)
+    }
+);
+
+const selectCategories = document.getElementById("category");
+
+iconCategory.forEach(
+    (elm) => {
+        selectCategories.innerHTML += `<option value="${elm}">${elm}</option>`
+    }
+);
+
+// creo evento sulla select
+selectCategories.addEventListener("change",
+    function() {
+        const iconsFiltered = iconsColored.filter(
+            (elm) => {
+                if (elm.category == selectCategories.value || selectCategories.value == " ") {
+                    return true;
+                }
+                return false;
+            }
+        )
+
+        printIcons(iconsFiltered, containerIcons);
+    }
+);
