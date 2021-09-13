@@ -1,7 +1,7 @@
 // Milestone 1
 // Partendo dalla seguente struttura dati , mostriamo in pagina tutte le icone disponibili come da layout.
 
-let icons = [
+const icons = [
 
 	{
 	  name: 'apple-alt',
@@ -113,12 +113,14 @@ let icons = [
 	},
 ];
 
+icons.forEach((elm) => {
 
+    const container = document.getElementById("icons");
+    const {family, name, prefix} = elm;
 
-icons.forEach((elm, i) => {
-    document.getElementById("icons").innerHTML += `
+    container.innerHTML += `
         <div class="box">
-            <div><i class="${elm.family} ${elm.prefix}${elm.name}"></i></div>
-            <div>${elm.name}</div>
+            <div><i class="${family} ${prefix}${name} fa-2x"></i></div>
+            <div class="name">${name}</div>
         </div>`
 })
