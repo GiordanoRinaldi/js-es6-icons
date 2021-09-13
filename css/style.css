@@ -28,13 +28,15 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-h3 {
     font-family: 'Rubik', sans-serif;
     color: white;
-
+    font-size: 20px;
 }
+
+.search {
+    margin-right: 10px;
+}
+
 
 main {
     width: 100vw;
@@ -46,6 +48,7 @@ main {
 .icons {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .box {

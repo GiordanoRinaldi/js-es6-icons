@@ -115,9 +115,9 @@ const icons = [
 
 
 const colors = {
-    food: "pink",
+    food: "yellow",
     animal: "green",
-    beverage: "yellow"
+    beverage: "red"
 };
 
 /**
@@ -139,11 +139,6 @@ const printIcons = (arr, container) => {
         }
     );
 }
-
-
-
-
-
 
 
 /**
